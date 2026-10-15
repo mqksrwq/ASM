@@ -3,9 +3,7 @@
 
 using namespace std;
 
-// Laboratory work 5
-// Variant 5: a string S of letters and digits is entered from the keyboard;
-// build string S1 from the letters of S and string S2 from the digits
+// Лабораторная работа 5
 
 void get_result(char*, char*, char*);
 
@@ -50,27 +48,27 @@ void get_result(char* input, char* letters, char* digits)
         copy_loop:
             lodsb
             cmp al, '0'
-            jb next
+            jb skip_char
             cmp al, '9'
             jbe is_digit
             cmp al, 'A'
-            jb next
+            jb skip_char
             cmp al, 'Z'
             jbe is_letter
             cmp al, 'a'
-            jb next
+            jb skip_char
             cmp al, 'z'
-            ja next
+            ja skip_char
 
         is_letter:
             stosb
-            jmp next
+            jmp skip_char
 
         is_digit:
             mov [ebx], al
             inc ebx
 
-        next:
+        skip_char:
             loop copy_loop
 
         finish:
